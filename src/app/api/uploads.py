@@ -4,7 +4,7 @@ import logging, tempfile, zipfile, os
 router = APIRouter()
 
 # initial methods used to get things up and running
-@router.get("/test")
+@router.get("/test", tags=["test"])
 def test():
     # https://fastapi.tiangolo.com/async/
     # some async operation
@@ -12,20 +12,20 @@ def test():
     return {"test": "passed!"}
 
 # testing a file upload with File
-@router.post("/test_file")
+@router.post("/test_file", tags=["test"])
 # example uses async https://fastapi.tiangolo.com/tutorial/request-files/
 def create_file(file: bytes = File(...)):
     return {"file_size": len(file)}
     # return {"something": 5}
 
 # testing a file upload with UploadFile
-@router.post("/test_uploadfile")
+@router.post("/test_uploadfile", tags=["test"])
 # example uses async https://fastapi.tiangolo.com/tutorial/request-files/
 def create_upload_file(file: UploadFile = File(...)):
     return {"filename": file.filename}
 
 # ability to accept a zip file and unzip it with File
-@router.post("/test_file/unzip")
+@router.post("/test_file/unzip", tags=["test"])
 def unzip_file(file: bytes = File(...)):
 
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -46,7 +46,7 @@ def unzip_file(file: bytes = File(...)):
     return {"unzipped files": unzipped_files}
 
 # ability to accept a zip file and unzip it with UploadFile
-@router.post("/test_uploadfile/unzip")
+@router.post("/test_uploadfile/unzip", tags=["test"])
 def unzip_upload_file(file: UploadFile = File(...)):
 
     with tempfile.TemporaryDirectory() as temp_dir:
