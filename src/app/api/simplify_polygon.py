@@ -180,10 +180,10 @@ def shapefile_geopandas_testing(file: bytes = File (...)):
         shp_file = [f for f in os.listdir('unzipped') if '.shp' in f][0]
         df = geopandas.read_file("unzipped/" + shp_file)
 
-        simplified_gs = df.simplify(0.2)
+        # simplified_gs = df.simplify(0.2)
         # can fiona read the simplified gs?
-        f = fiona.open(simplified_gs)
-        print("fiona? ", f)
+        # f = fiona.open(simplified_gs)
+        # print("fiona? ", f)
 
         # print(f"input projection = {df.crs}")
         # print("df.geometry: \n", df.geometry)
